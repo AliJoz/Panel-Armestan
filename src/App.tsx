@@ -11,19 +11,23 @@ const App: React.FC = () => {
   return (
    
    <>
-           
-      <div className="flex max-h-screen">
-        <div className="flex flex-col w-[82%]">
-        <Header />
-        <div>
-        <Approure />
-        </div>
-          
-        </div>
-        <div className="h-max ">
-        <Sidebar />
-        </div>
-      </div>
+   <div className="flex flex-row-reverse w-full min-h-screen">
+  {/* محتوای اصلی */}
+  <div className="w-[18%] h-screen sticky top-0">
+    <Sidebar />
+  </div>
+
+  <div className="flex flex-col w-[82%]">
+    <Header />
+    <div>
+      <Approure />
+    </div>
+  </div>
+
+  {/* سایدبار */}
+  
+</div>
+
      
      
       </>  

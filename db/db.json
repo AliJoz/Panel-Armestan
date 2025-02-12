@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Alireza",
+      "age": 25,
+      "role": "user",
+      "phone": "09123456789",
+      "username": "alijoz",
+      "password": "123456a"
+    },
+    {
+      "id": "2",
+      "name": "mehdai",
+      "age": 30,
+      "role": "admin",
+      "phone": "09191713064",
+      "username": "Kamali",
+      "password": "654321a"
+    }
+    
+  ]
+}

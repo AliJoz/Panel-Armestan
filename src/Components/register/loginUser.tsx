@@ -23,22 +23,26 @@ export default function SignupForm() {
 
     try {
       const data = await loginUser(formData.phone, formData.password);
-
+      console.log("data", data);
       if (data.accessToken) {
-        localStorage.setItem("accessToken", data.accessToken);
+        sessionStorage.setItem("accessToken", data.accessToken); // ذخیره در sessionStorage
         Swal.fire({
           icon: "success",
           title: "موفقیت!",
-          text: "ثبت‌نام موفقیت‌آمیز بود!",
+          text: "ورود موفقیت‌آمیز بود!",
+          timer: 1500, // نمایش فقط 1.5 ثانیه
+          showConfirmButton: false,
         }).then(() => {
-          navigate("/"); // مسیر را به صفحه اصلی یا هر صفحه‌ای که می‌خواهید تغییر دهید
+          navigate("/dashboard"); // هدایت به داشبورد
         });
+
         setFormData({
           phone: "",
           password: "",
         });
       } else {
-        let f = "";
+        let f: string | undefined = "";
+f = undefined; 
 
         if (Array.isArray(data) && data.length > 0) {
           const firstMessage = data[0].message; // دسترسی به پیام اولین عنصر
@@ -89,16 +93,17 @@ export default function SignupForm() {
       <div className="flex justify-center items-center min-h-screen relative">
         <div className="absolute inset-0 bg-custom"></div>
         <div className="w-100  relative z-10">
-        <div className="w-full text-zic-700">
-
+          <div className="w-full text-zic-700">
             <div className="bg-neutral-200 text-zinc-600 rounded-tl-[56px]   py-3 text-center absolute left-0  w-1/2 top-0  ">
-            <a href="./Phone" target="_parent" rel="noopener noreferrer"><h2 className=" font-bold">نام کاربری</h2></a>
+              <a href="./Phone" target="_parent" rel="noopener noreferrer">
+                <h2 className=" font-bold">نام کاربری</h2>
+              </a>
             </div>
             <div className=" bg-cyan-400 rounded-tr-[56px]   py-3 text-center absolute right-0  w-1/2 top-0 ">
-           <h2 className="text-white font-bold">شماره همراه</h2>
+              <h2 className="text-white font-bold">شماره همراه</h2>
+            </div>
           </div>
-          </div>
-         
+
           <div className="bg-white p-6 rounded-[56px] shadow-lg text-center">
             <form className="space-y-9 mt-12" onSubmit={handleSubmit}>
               <div className="space-y-3">
@@ -187,9 +192,9 @@ export default function SignupForm() {
             </form>
 
             <div className="mt-4">
-            حساب کاربری ندارید؟{" "}
+              حساب کاربری ندارید؟{" "}
               <a href="./Register" className="text-blue-500">
-              ثبت نام کنید
+                ثبت نام کنید
               </a>
             </div>
           </div>
