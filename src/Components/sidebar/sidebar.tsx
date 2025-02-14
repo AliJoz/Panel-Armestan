@@ -9,10 +9,10 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className=" relative">
+    <div className="flex ">
       {}
       <div
-        className={`w-44 h-screen bg-zinc-700 rounded-l-lg text-white p-4 transition-all  
+        className={`w-44 h-screen  bg-zinc-700 rounded-l-lg text-white p-4 transition-all
         ${isOpen ? "translate-x-0 opacity-100 " : "-translate-x-0 opacity-0 hidden"}`}
         dir="rtl"
       >

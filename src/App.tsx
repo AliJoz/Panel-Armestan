@@ -1,37 +1,33 @@
 
-import Approure from "./router/routerApp";
-import { Routes, Route } from "react-router-dom";
-import LoginUser from "./Components/register/loginUser";
-import Register from "./Components/register/register";
-
 import Sidebar from "./Components/sidebar/sidebar"
-import Header from "./Components/Header/Header"
 
-const App: React.FC = () => {
+
+import { AuthProvider } from "./Components/context/AuthContext"; // حتما مسیر را بررسی کنید
+import { BrowserRouter } from "react-router-dom";
+import Approuter from "./router/routerApp";
+
+const App = () => {
   return (
-   
-   <>
-   <div className="flex flex-row-reverse w-full min-h-screen">
-  {/* محتوای اصلی */}
-  <div className="w-[18%] h-screen sticky top-0">
-    <Sidebar />
-  </div>
-
-  <div className="flex flex-col w-[82%]">
-    <Header />
-    <div>
-      <Approure />
-    </div>
-  </div>
-
-  {/* سایدبار */}
+    <AuthProvider>
+      <BrowserRouter>
+        <div className="relative flex flex-row-reverse w-full min-h-screen bg-neutral-100">
+          {/* سایدبار */}
+          <div className="w-[12%] h-screen fixed top-0 right-0  text-white ">
+            <Sidebar />
+          </div>
   
-</div>
-
-     
-     
-      </>  
+          {/* محتوای اصلی */}
+          <div className="flex flex-col  w-full pr-[18%]">
+           
+            <div className="flex-grow p-4">
+              <Approuter />
+            </div>
+          </div>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
+  
 };
 
 export default App;

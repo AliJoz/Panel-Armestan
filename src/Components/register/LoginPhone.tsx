@@ -2,7 +2,7 @@ import { useState } from "react";
 import { loginUser } from "../apiToken/token";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../context/AuthContext";
 export default function SignupForm() {
   const [formData, setFormData] = useState({
     phone: "",
@@ -11,7 +11,7 @@ export default function SignupForm() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const { login } = useAuth();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -25,13 +25,14 @@ export default function SignupForm() {
       const data = await loginUser(formData.phone, formData.password);
 
       if (data.accessToken) {
+        login();
         localStorage.setItem("accessToken", data.accessToken);
         Swal.fire({
           icon: "success",
           title: "موفقیت!",
           text: "ثبت‌نام موفقیت‌آمیز بود!",
         }).then(() => {
-          navigate("/"); 
+          navigate("/dashboard");
         });
         setFormData({
           phone: "",

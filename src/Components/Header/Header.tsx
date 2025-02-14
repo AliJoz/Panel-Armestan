@@ -1,14 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 const Header: React.FC = () => {
+
+  const { logout } = useAuth();
   return (
     <div className="bg-white shadow shadow-zinc-800 m-2  p-4 flex justify-between">
       <div>
         <Link to="/loginUser">
           {" "}
-          <button className="bg-rose-400 text-white px-4 py-2 rounded-lg">
-            خارج شدن
-          </button>
+          
+          <button className="bg-rose-400 text-white px-4 py-2 rounded-lg" onClick={logout}>خروج</button>
+       
         </Link>
       </div>
       <div className="flex gap-x-2 items-center">
